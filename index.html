@@ -5,87 +5,375 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Professional resume website of Ethan Veillon" />
   <title>Ethan Veillon - Resume</title>
+
   <style>
-    /* Reset browser default styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: sans-serif;
+      font-family: Tahoma, Verdana, Segoe UI, sans-serif;
       line-height: 1.6;
-      background: #f8f9fa;
-      color: #333;
-      padding: 20px;
-      max-width: 800px;
-      margin: auto;
+      color: #111;
+      min-height: 100vh;
+      padding: 28px 20px 72px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.35), transparent 28%),
+        linear-gradient(135deg, #3a8dde 0%, #1763b6 45%, #0b3f8a 100%);
     }
 
-    header {
-      text-align: center;
-      margin-bottom: 40px;
+    a {
+      color: #0645ad;
+      font-weight: 600;
     }
 
-    nav {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    nav a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #0077cc;
-    }
-
-    nav a:hover {
+    a:hover,
+    a:focus {
+      color: #0b63d1;
       text-decoration: underline;
     }
 
-    section {
-      margin-bottom: 40px;
+    .desktop {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .xp-window {
+      background: #ece9d8;
+      border: 2px solid #0a246a;
+      border-radius: 8px 8px 3px 3px;
+      box-shadow:
+        4px 4px 12px rgba(0, 0, 0, 0.35),
+        inset 1px 1px 0 rgba(255, 255, 255, 0.8);
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .title-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 9px;
+      color: white;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      background: linear-gradient(
+        to bottom,
+        #2f89ff 0%,
+        #0a5ed7 45%,
+        #003c9d 100%
+      );
+      border-bottom: 1px solid #082b6f;
+    }
+
+    .title-bar-text {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-shadow: 1px 1px 1px #001c55;
+      font-size: 0.95rem;
+    }
+
+    .window-icon {
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      background: linear-gradient(135deg, #ffffff 0%, #89c4ff 50%, #1454c6 100%);
+      border: 1px solid #fff;
+      box-shadow: inset -1px -1px 0 #06347c;
+    }
+
+    .window-controls {
+      display: flex;
+      gap: 4px;
+    }
+
+    .control {
+      width: 22px;
+      height: 20px;
+      border: 1px solid #fff;
+      border-radius: 3px;
+      background: linear-gradient(to bottom, #ffffff, #b8d7ff 45%, #2668c9);
+      box-shadow: inset -1px -1px 0 #003c9d;
+      color: #003c9d;
+      font-size: 0.75rem;
+      font-weight: 700;
+      line-height: 18px;
+      text-align: center;
+    }
+
+    .control.close {
+      background: linear-gradient(to bottom, #ffb7a8, #e45435 48%, #b01709);
+      color: white;
+    }
+
+    .window-body {
+      padding: 22px;
+      border: 2px solid #fff;
+      border-top: none;
+    }
+
+    header.window-body {
+      text-align: center;
+      padding: 34px 22px;
+      background:
+        linear-gradient(to bottom, #f7f4e8, #ece9d8);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      color: #0a246a;
+      margin-bottom: 8px;
+      text-shadow: 1px 1px 0 #fff;
+    }
+
+    header p {
+      font-size: 1.05rem;
+      color: #333;
+      font-weight: 600;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      max-width: 980px;
+      margin: 0 auto 24px;
+      background: linear-gradient(to bottom, #245edb, #1647a2);
+      border: 2px solid #0a246a;
+      border-radius: 6px;
+      box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+      padding: 8px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    nav a,
+    .xp-button {
+      display: inline-block;
+      padding: 7px 16px;
+      color: #111;
+      text-decoration: none;
+      background: linear-gradient(to bottom, #ffffff, #ece9d8 45%, #d6d1bd);
+      border: 1px solid #777;
+      border-top-color: #fff;
+      border-left-color: #fff;
+      border-radius: 3px;
+      box-shadow:
+        inset 1px 1px 0 rgba(255,255,255,0.9),
+        1px 1px 0 rgba(0,0,0,0.25);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    nav a:hover,
+    nav a:focus,
+    .xp-button:hover,
+    .xp-button:focus {
+      color: #000;
+      background: linear-gradient(to bottom, #fff8d8, #f5d77b);
+      text-decoration: none;
+    }
+
+    nav a:active,
+    .xp-button:active {
+      border-top-color: #777;
+      border-left-color: #777;
+      border-bottom-color: #fff;
+      border-right-color: #fff;
+      transform: translateY(1px);
+    }
+
+    section h2 {
+      color: #0a246a;
+      font-size: 1.45rem;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #b7b08f;
+    }
+
+    section p {
+      max-width: 76ch;
+      font-size: 1rem;
+      background: #fffef4;
+      border: 1px solid #aca899;
+      padding: 16px;
+      box-shadow: inset 1px 1px 2px rgba(0,0,0,0.18);
+    }
+
+    #resume p,
+    #contact p {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
     footer {
-      text-align: center;
-      font-size: 0.9em;
-      color: #666;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background: linear-gradient(to bottom, #245edb, #123f97);
+      border-top: 2px solid #5ba3ff;
+      color: white;
+      font-size: 0.9rem;
+      padding: 8px 14px;
+      box-shadow: 0 -3px 10px rgba(0,0,0,0.35);
+      z-index: 30;
+    }
+
+    footer p {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .start-button {
+      display: inline-block;
+      margin-right: 12px;
+      padding: 4px 12px;
+      border-radius: 14px;
+      background: linear-gradient(to bottom, #63d75a, #249419);
+      border: 1px solid #0c6812;
+      color: white;
+      font-weight: 700;
+      text-shadow: 1px 1px 1px #064b0b;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 16px 12px 80px;
+      }
+
+      .window-body {
+        padding: 16px;
+      }
+
+      nav {
+        position: static;
+        justify-content: stretch;
+      }
+
+      nav a {
+        flex: 1 1 100%;
+        text-align: center;
+      }
+
+      .window-controls {
+        display: none;
+      }
+
+      section p {
+        font-size: 0.96rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <header>
-    <h1>Ethan Veillon</h1>
-    <p>Cyber Security Student | Java Enthusiast | Lifelong Learner</p>
-  </header>
+  <div class="desktop">
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#resume">Resume</a>
-    <a href="#contact">Contact</a>
-  </nav>
+    <div class="xp-window">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <span class="window-icon"></span>
+          Ethan Veillon - Profile
+        </div>
+        <div class="window-controls" aria-hidden="true">
+          <span class="control">_</span>
+          <span class="control">□</span>
+          <span class="control close">×</span>
+        </div>
+      </div>
 
-  <main>
-    <section id="about">
-      <h2>About Me</h2>
-      <p>I am a motivated cybersecurity major with growing expertise in Python, Java, and networking. I am passionate about AI technology and cybersecurity, I have been utilizing AI tools to consult individuals on future planning strategies. In addition, I create content on both Twitch and YouTube, where I develop skills in video editing, content creation, and community management. I am currently pursuing CompTIA A+, Network+, and Security+ certifications to further my knowledge in IT and cybersecurity fundamentals. </p>
-    </section>
+      <header class="window-body">
+        <h1>Ethan Veillon</h1>
+        <p>Cyber Security Student | Java Enthusiast | Lifelong Learner</p>
+      </header>
+    </div>
 
-    <section id="resume">
-      <h2>Resume</h2>
-      <p>You can download my resume <a href="https://drive.google.com/file/d/1mTWiV4HodLr2VOHBCV7_aUAvCBCBaMe3/view?usp=sharing" download>here</a>.</p>
-    </section>
+    <nav aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email me at <a href="mailto:eveillon14@gmail.com">eveillon14@gmail.com</a></p>
-    </section>
-  </main>
+    <main>
+
+      <section id="about" class="xp-window">
+        <div class="title-bar">
+          <div class="title-bar-text">
+            <span class="window-icon"></span>
+            About Me
+          </div>
+          <div class="window-controls" aria-hidden="true">
+            <span class="control">_</span>
+            <span class="control">□</span>
+            <span class="control close">×</span>
+          </div>
+        </div>
+
+        <div class="window-body">
+          <h2>About Me</h2>
+          <p>I am a motivated cybersecurity major with growing expertise in Python, Java, and networking. I am passionate about AI technology and cybersecurity, I have been utilizing AI tools to consult individuals on future planning strategies. In addition, I create content on both Twitch and YouTube, where I develop skills in video editing, content creation, and community management. I am currently pursuing CompTIA A+, Network+, and Security+ certifications to further my knowledge in IT and cybersecurity fundamentals. </p>
+        </div>
+      </section>
+
+      <section id="resume" class="xp-window">
+        <div class="title-bar">
+          <div class="title-bar-text">
+            <span class="window-icon"></span>
+            Resume
+          </div>
+          <div class="window-controls" aria-hidden="true">
+            <span class="control">_</span>
+            <span class="control">□</span>
+            <span class="control close">×</span>
+          </div>
+        </div>
+
+        <div class="window-body">
+          <h2>Resume</h2>
+          <p>
+            You can download my resume
+            <a class="xp-button" href="https://drive.google.com/file/d/1mTWiV4HodLr2VOHBCV7_aUAvCBCBaMe3/view?usp=sharing" download>here</a>.
+          </p>
+        </div>
+      </section>
+
+      <section id="contact" class="xp-window">
+        <div class="title-bar">
+          <div class="title-bar-text">
+            <span class="window-icon"></span>
+            Contact
+          </div>
+          <div class="window-controls" aria-hidden="true">
+            <span class="control">_</span>
+            <span class="control">□</span>
+            <span class="control close">×</span>
+          </div>
+        </div>
+
+        <div class="window-body">
+          <h2>Contact</h2>
+          <p>Email me at <a href="mailto:eveillon14@gmail.com">eveillon14@gmail.com</a></p>
+        </div>
+      </section>
+
+    </main>
+  </div>
 
   <footer>
-    <p>&copy; 2026 Ethan Veillon. All rights reserved.</p>
+    <p><span class="start-button">Start</span>&copy; 2026 Ethan Veillon. All rights reserved.</p>
   </footer>
 
 </body>
