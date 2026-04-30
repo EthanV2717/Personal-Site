@@ -13,368 +13,510 @@
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Tahoma, Verdana, Segoe UI, sans-serif;
-      line-height: 1.6;
-      color: #111;
-      min-height: 100vh;
-      padding: 28px 20px 72px;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.35), transparent 28%),
-        linear-gradient(135deg, #3a8dde 0%, #1763b6 45%, #0b3f8a 100%);
-    }
-
-    a {
-      color: #0645ad;
-      font-weight: 600;
-    }
-
-    a:hover,
-    a:focus {
-      color: #0b63d1;
-      text-decoration: underline;
-    }
-
-    .desktop {
-      max-width: 980px;
-      margin: 0 auto;
-    }
-
-    .xp-window {
-      background: #ece9d8;
-      border: 2px solid #0a246a;
-      border-radius: 8px 8px 3px 3px;
-      box-shadow:
-        4px 4px 12px rgba(0, 0, 0, 0.35),
-        inset 1px 1px 0 rgba(255, 255, 255, 0.8);
-      margin-bottom: 24px;
+    html, body {
+      height: 100%;
+      font-family: Tahoma, Verdana, sans-serif;
       overflow: hidden;
     }
 
-    .title-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 7px 9px;
-      color: white;
-      font-weight: 700;
-      letter-spacing: 0.2px;
-      background: linear-gradient(
-        to bottom,
-        #2f89ff 0%,
-        #0a5ed7 45%,
-        #003c9d 100%
-      );
-      border-bottom: 1px solid #082b6f;
+    body {
+      color: #111;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(255,255,255,0.95) 0 5%, transparent 11%),
+        radial-gradient(circle at 68% 15%, rgba(255,255,255,0.9) 0 4%, transparent 10%),
+        radial-gradient(circle at 84% 28%, rgba(255,255,255,0.85) 0 5%, transparent 12%),
+        linear-gradient(to bottom, #3c7df0 0%, #5fa8ff 43%, #68a52b 44%, #2e7d13 100%);
     }
 
-    .title-bar-text {
+    a {
+      color: #0000ee;
+    }
+
+    .desktop {
+      height: calc(100vh - 40px);
+      padding: 22px 16px 12px;
+      position: relative;
+    }
+
+    .desktop-icons {
+      position: absolute;
+      top: 24px;
+      left: 18px;
+      width: 110px;
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+      z-index: 1;
+    }
+
+    .desktop-icon {
+      color: white;
+      text-align: center;
+      font-size: 13px;
+      text-shadow: 1px 1px 2px #000;
+      user-select: none;
+    }
+
+    .desktop-icon .icon {
+      width: 42px;
+      height: 42px;
+      margin: 0 auto 6px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, #fff, #8fc8ff 45%, #0756c9);
+      border: 1px solid rgba(255,255,255,0.8);
+      box-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+    }
+
+    .browser-window {
+      width: min(980px, calc(100vw - 180px));
+      height: calc(100vh - 78px);
+      margin: 0 auto;
+      border: 3px solid #0055e5;
+      border-radius: 9px 9px 0 0;
+      background: #ece9d8;
+      box-shadow: 8px 8px 22px rgba(0,0,0,0.45);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+    }
+
+    .browser-titlebar {
+      height: 34px;
+      background: linear-gradient(to bottom, #3b9cff, #0057e7 48%, #003fba);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8px;
+      font-weight: 700;
+      text-shadow: 1px 1px #003078;
+    }
+
+    .browser-title {
       display: flex;
       align-items: center;
       gap: 8px;
-      text-shadow: 1px 1px 1px #001c55;
-      font-size: 0.95rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .window-icon {
-      width: 16px;
-      height: 16px;
-      display: inline-block;
-      background: linear-gradient(135deg, #ffffff 0%, #89c4ff 50%, #1454c6 100%);
-      border: 1px solid #fff;
-      box-shadow: inset -1px -1px 0 #06347c;
+    .ie-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #9ee7ff, #0077d9 70%);
+      border: 1px solid white;
     }
 
-    .window-controls {
+    .window-buttons {
       display: flex;
       gap: 4px;
     }
 
-    .control {
-      width: 22px;
-      height: 20px;
-      border: 1px solid #fff;
+    .window-button {
+      width: 24px;
+      height: 22px;
+      border: 1px solid white;
       border-radius: 3px;
-      background: linear-gradient(to bottom, #ffffff, #b8d7ff 45%, #2668c9);
-      box-shadow: inset -1px -1px 0 #003c9d;
-      color: #003c9d;
-      font-size: 0.75rem;
-      font-weight: 700;
-      line-height: 18px;
-      text-align: center;
-    }
-
-    .control.close {
-      background: linear-gradient(to bottom, #ffb7a8, #e45435 48%, #b01709);
+      background: linear-gradient(to bottom, #75b6ff, #1b63d9);
       color: white;
-    }
-
-    .window-body {
-      padding: 22px;
-      border: 2px solid #fff;
-      border-top: none;
-    }
-
-    header.window-body {
+      font-weight: 700;
+      line-height: 20px;
       text-align: center;
-      padding: 34px 22px;
-      background:
-        linear-gradient(to bottom, #f7f4e8, #ece9d8);
+      box-shadow: inset -1px -1px 0 rgba(0,0,0,0.35);
     }
 
-    h1 {
-      font-size: clamp(2rem, 6vw, 3.2rem);
-      color: #0a246a;
+    .window-button.close {
+      background: linear-gradient(to bottom, #ffb09b, #e33416);
+    }
+
+    .menu-bar {
+      height: 30px;
+      background: #ece9d8;
+      border-bottom: 1px solid #aca899;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      padding: 0 12px;
+      font-size: 14px;
+    }
+
+    .toolbar {
+      min-height: 52px;
+      background: linear-gradient(to bottom, #f8f5e9, #dfdac5);
+      border-bottom: 1px solid #aca899;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 10px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-button {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+      padding: 4px 7px;
+      border: 1px solid transparent;
+    }
+
+    .toolbar-button:hover {
+      border-color: #aca899;
+      background: #fff;
+    }
+
+    .round-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: inline-block;
+      background: linear-gradient(to bottom, #8df078, #188f18);
+      border: 1px solid #0d6f0d;
+    }
+
+    .round-icon.gray {
+      background: linear-gradient(to bottom, #eee, #aaa);
+      border-color: #777;
+    }
+
+    .address-bar {
+      height: 34px;
+      background: #ece9d8;
+      border-bottom: 1px solid #aca899;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 8px;
+      font-size: 14px;
+    }
+
+    .address-input {
+      flex: 1;
+      background: white;
+      border: 1px solid #7f9db9;
+      padding: 3px 6px;
+      height: 24px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .go-button {
+      background: linear-gradient(to bottom, #6ee66e, #199119);
+      color: white;
+      border: 1px solid #0b690b;
+      padding: 3px 10px;
+      font-weight: 700;
+    }
+
+    .browser-content {
+      flex: 1;
+      background: white;
+      overflow-y: auto;
+      padding: 12px;
+    }
+
+    .site-header {
+      background: linear-gradient(to bottom, #1c72df, #0845a6);
+      color: white;
+      text-align: center;
+      padding: 32px 18px;
+      border: 1px solid #0a3c8a;
+    }
+
+    .site-header h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
       margin-bottom: 8px;
-      text-shadow: 1px 1px 0 #fff;
     }
 
-    header p {
-      font-size: 1.05rem;
-      color: #333;
-      font-weight: 600;
+    .site-header p {
+      font-size: 1.1rem;
     }
 
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      max-width: 980px;
-      margin: 0 auto 24px;
-      background: linear-gradient(to bottom, #245edb, #1647a2);
-      border: 2px solid #0a246a;
-      border-radius: 6px;
-      box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
-      padding: 8px;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
+      background: #f4f4f4;
+      border: 1px solid #c7c7c7;
+      border-top: none;
+      text-align: center;
+      padding: 14px;
+      margin-bottom: 20px;
     }
 
-    nav a,
+    nav a {
+      margin: 0 18px;
+      font-size: 1rem;
+    }
+
+    .content-window {
+      border: 1px solid #9eb6d8;
+      margin-bottom: 18px;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.12);
+    }
+
+    .content-titlebar {
+      background: linear-gradient(to bottom, #eaf3ff, #c8dcf8);
+      border-bottom: 1px solid #9eb6d8;
+      padding: 9px 14px;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #111;
+    }
+
+    .content-body {
+      padding: 18px;
+      font-size: 1rem;
+      line-height: 1.7;
+      background: white;
+    }
+
     .xp-button {
       display: inline-block;
-      padding: 7px 16px;
+      padding: 4px 12px;
       color: #111;
       text-decoration: none;
-      background: linear-gradient(to bottom, #ffffff, #ece9d8 45%, #d6d1bd);
+      background: linear-gradient(to bottom, #fff, #ece9d8 50%, #d6d1bd);
       border: 1px solid #777;
-      border-top-color: #fff;
-      border-left-color: #fff;
-      border-radius: 3px;
-      box-shadow:
-        inset 1px 1px 0 rgba(255,255,255,0.9),
-        1px 1px 0 rgba(0,0,0,0.25);
-      font-size: 0.95rem;
+      border-top-color: white;
+      border-left-color: white;
+      box-shadow: 1px 1px 0 rgba(0,0,0,0.25);
+      border-radius: 2px;
       font-weight: 700;
     }
 
-    nav a:hover,
-    nav a:focus,
-    .xp-button:hover,
-    .xp-button:focus {
-      color: #000;
-      background: linear-gradient(to bottom, #fff8d8, #f5d77b);
+    .xp-button:hover {
+      background: linear-gradient(to bottom, #fff8d2, #f4d064);
       text-decoration: none;
     }
 
-    nav a:active,
-    .xp-button:active {
-      border-top-color: #777;
-      border-left-color: #777;
-      border-bottom-color: #fff;
-      border-right-color: #fff;
-      transform: translateY(1px);
+    footer.site-footer {
+      text-align: center;
+      border-top: 1px solid #ddd;
+      margin-top: 28px;
+      padding: 18px;
+      color: #333;
+      background: #f7f7f7;
     }
 
-    section h2 {
-      color: #0a246a;
-      font-size: 1.45rem;
-      margin-bottom: 12px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid #b7b08f;
-    }
-
-    section p {
-      max-width: 76ch;
-      font-size: 1rem;
-      background: #fffef4;
-      border: 1px solid #aca899;
-      padding: 16px;
-      box-shadow: inset 1px 1px 2px rgba(0,0,0,0.18);
-    }
-
-    #resume p,
-    #contact p {
+    .taskbar {
+      height: 40px;
+      background: linear-gradient(to bottom, #2586ff, #0057d8 45%, #0042a8);
+      border-top: 1px solid #6bb3ff;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
       display: flex;
       align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    footer {
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      background: linear-gradient(to bottom, #245edb, #123f97);
-      border-top: 2px solid #5ba3ff;
       color: white;
-      font-size: 0.9rem;
-      padding: 8px 14px;
-      box-shadow: 0 -3px 10px rgba(0,0,0,0.35);
-      z-index: 30;
-    }
-
-    footer p {
-      max-width: 980px;
-      margin: 0 auto;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.35);
     }
 
     .start-button {
-      display: inline-block;
-      margin-right: 12px;
-      padding: 4px 12px;
-      border-radius: 14px;
-      background: linear-gradient(to bottom, #63d75a, #249419);
-      border: 1px solid #0c6812;
-      color: white;
+      height: 100%;
+      padding: 0 22px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 20px;
       font-weight: 700;
-      text-shadow: 1px 1px 1px #064b0b;
+      font-style: italic;
+      background: linear-gradient(to bottom, #67d95f, #188018);
+      border-radius: 0 16px 16px 0;
+      border-right: 2px solid #0b5d0b;
+      text-shadow: 1px 1px #064906;
     }
 
-    @media (max-width: 640px) {
-      body {
-        padding: 16px 12px 80px;
+    .taskbar-item {
+      margin-left: 10px;
+      height: 30px;
+      width: 230px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 10px;
+      border-radius: 3px;
+      background: linear-gradient(to bottom, #1e73df, #0b4eb5);
+      border: 1px solid #003f9e;
+      box-shadow: inset 1px 1px rgba(255,255,255,0.35);
+      font-size: 14px;
+    }
+
+    .system-tray {
+      margin-left: auto;
+      height: 100%;
+      min-width: 118px;
+      background: linear-gradient(to bottom, #16a5ff, #0b77d5);
+      border-left: 1px solid #74c6ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 760px) {
+      .desktop {
+        padding: 8px;
       }
 
-      .window-body {
-        padding: 16px;
-      }
-
-      nav {
-        position: static;
-        justify-content: stretch;
-      }
-
-      nav a {
-        flex: 1 1 100%;
-        text-align: center;
-      }
-
-      .window-controls {
+      .desktop-icons {
         display: none;
       }
 
-      section p {
-        font-size: 0.96rem;
+      .browser-window {
+        width: 100%;
+        height: calc(100vh - 56px);
+      }
+
+      .menu-bar,
+      .toolbar {
+        display: none;
+      }
+
+      nav a {
+        display: block;
+        margin: 8px 0;
+      }
+
+      .taskbar-item {
+        display: none;
+      }
+
+      .site-header {
+        padding: 24px 12px;
       }
     }
   </style>
 </head>
 
 <body>
-
   <div class="desktop">
 
-    <div class="xp-window">
-      <div class="title-bar">
-        <div class="title-bar-text">
-          <span class="window-icon"></span>
-          Ethan Veillon - Profile
+    <aside class="desktop-icons" aria-hidden="true">
+      <div class="desktop-icon">
+        <div class="icon"></div>
+        My Computer
+      </div>
+      <div class="desktop-icon">
+        <div class="icon"></div>
+        My Documents
+      </div>
+      <div class="desktop-icon">
+        <div class="icon"></div>
+        Internet Explorer
+      </div>
+      <div class="desktop-icon">
+        <div class="icon"></div>
+        Recycle Bin
+      </div>
+    </aside>
+
+    <div class="browser-window" role="application" aria-label="Internet Explorer style resume website window">
+
+      <div class="browser-titlebar">
+        <div class="browser-title">
+          <span class="ie-icon"></span>
+          Ethan Veillon - Resume - Microsoft Internet Explorer
         </div>
-        <div class="window-controls" aria-hidden="true">
-          <span class="control">_</span>
-          <span class="control">□</span>
-          <span class="control close">×</span>
+
+        <div class="window-buttons" aria-hidden="true">
+          <div class="window-button">_</div>
+          <div class="window-button">□</div>
+          <div class="window-button close">×</div>
         </div>
       </div>
 
-      <header class="window-body">
-        <h1>Ethan Veillon</h1>
-        <p>Cyber Security Student | Java Enthusiast | Lifelong Learner</p>
-      </header>
+      <div class="menu-bar" aria-hidden="true">
+        <span>File</span>
+        <span>Edit</span>
+        <span>View</span>
+        <span>Favorites</span>
+        <span>Tools</span>
+        <span>Help</span>
+      </div>
+
+      <div class="toolbar" aria-hidden="true">
+        <div class="toolbar-button"><span class="round-icon"></span> Back</div>
+        <div class="toolbar-button"><span class="round-icon gray"></span> Forward</div>
+        <div class="toolbar-button">Stop</div>
+        <div class="toolbar-button">Refresh</div>
+        <div class="toolbar-button">Home</div>
+        <div class="toolbar-button">Search</div>
+        <div class="toolbar-button">Favorites</div>
+      </div>
+
+      <div class="address-bar" aria-hidden="true">
+        <span>Address</span>
+        <div class="address-input">http://localhost/ethan-veillon-resume.html</div>
+        <button class="go-button">Go</button>
+      </div>
+
+      <div class="browser-content">
+
+        <header class="site-header">
+          <h1>Ethan Veillon</h1>
+          <p>Cyber Security Student | Java Enthusiast | Lifelong Learner</p>
+        </header>
+
+        <nav aria-label="Primary navigation">
+          <a href="#about">🏠 About</a>
+          <a href="#resume">📄 Resume</a>
+          <a href="#contact">✉️ Contact</a>
+        </nav>
+
+        <main>
+          <section id="about" class="content-window">
+            <div class="content-titlebar">About Me</div>
+            <div class="content-body">
+              <p>I am a motivated cybersecurity major with growing expertise in Python, Java, and networking. I am passionate about AI technology and cybersecurity, I have been utilizing AI tools to consult individuals on future planning strategies. In addition, I create content on both Twitch and YouTube, where I develop skills in video editing, content creation, and community management. I am currently pursuing CompTIA A+, Network+, and Security+ certifications to further my knowledge in IT and cybersecurity fundamentals. </p>
+            </div>
+          </section>
+
+          <section id="resume" class="content-window">
+            <div class="content-titlebar">Resume</div>
+            <div class="content-body">
+              <p>
+                You can download my resume
+                <a class="xp-button" href="https://drive.google.com/file/d/1mTWiV4HodLr2VOHBCV7_aUAvCBCBaMe3/view?usp=sharing" download>here</a>.
+              </p>
+            </div>
+          </section>
+
+          <section id="contact" class="content-window">
+            <div class="content-titlebar">Contact</div>
+            <div class="content-body">
+              <p>Email me at <a href="mailto:eveillon14@gmail.com">eveillon14@gmail.com</a></p>
+            </div>
+          </section>
+        </main>
+
+        <footer class="site-footer">
+          <p>&copy; 2026 Ethan Veillon. All rights reserved.</p>
+        </footer>
+
+      </div>
     </div>
-
-    <nav aria-label="Primary navigation">
-      <a href="#about">About</a>
-      <a href="#resume">Resume</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <main>
-
-      <section id="about" class="xp-window">
-        <div class="title-bar">
-          <div class="title-bar-text">
-            <span class="window-icon"></span>
-            About Me
-          </div>
-          <div class="window-controls" aria-hidden="true">
-            <span class="control">_</span>
-            <span class="control">□</span>
-            <span class="control close">×</span>
-          </div>
-        </div>
-
-        <div class="window-body">
-          <h2>About Me</h2>
-          <p>I am a motivated cybersecurity major with growing expertise in Python, Java, and networking. I am passionate about AI technology and cybersecurity, I have been utilizing AI tools to consult individuals on future planning strategies. In addition, I create content on both Twitch and YouTube, where I develop skills in video editing, content creation, and community management. I am currently pursuing CompTIA A+, Network+, and Security+ certifications to further my knowledge in IT and cybersecurity fundamentals. </p>
-        </div>
-      </section>
-
-      <section id="resume" class="xp-window">
-        <div class="title-bar">
-          <div class="title-bar-text">
-            <span class="window-icon"></span>
-            Resume
-          </div>
-          <div class="window-controls" aria-hidden="true">
-            <span class="control">_</span>
-            <span class="control">□</span>
-            <span class="control close">×</span>
-          </div>
-        </div>
-
-        <div class="window-body">
-          <h2>Resume</h2>
-          <p>
-            You can download my resume
-            <a class="xp-button" href="https://drive.google.com/file/d/1mTWiV4HodLr2VOHBCV7_aUAvCBCBaMe3/view?usp=sharing" download>here</a>.
-          </p>
-        </div>
-      </section>
-
-      <section id="contact" class="xp-window">
-        <div class="title-bar">
-          <div class="title-bar-text">
-            <span class="window-icon"></span>
-            Contact
-          </div>
-          <div class="window-controls" aria-hidden="true">
-            <span class="control">_</span>
-            <span class="control">□</span>
-            <span class="control close">×</span>
-          </div>
-        </div>
-
-        <div class="window-body">
-          <h2>Contact</h2>
-          <p>Email me at <a href="mailto:eveillon14@gmail.com">eveillon14@gmail.com</a></p>
-        </div>
-      </section>
-
-    </main>
   </div>
 
-  <footer>
-    <p><span class="start-button">Start</span>&copy; 2026 Ethan Veillon. All rights reserved.</p>
-  </footer>
+  <div class="taskbar" aria-hidden="true">
+    <div class="start-button">
+      <span>⊞</span>
+      start
+    </div>
 
+    <div class="taskbar-item">
+      <span class="ie-icon"></span>
+      Ethan Veillon - Resu...
+    </div>
+
+    <div class="system-tray">
+      4:39 PM
+    </div>
+  </div>
 </body>
 </html>
