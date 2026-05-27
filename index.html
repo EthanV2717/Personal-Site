@@ -13,7 +13,8 @@
       box-sizing: border-box;
     }
 
-    html, body {
+    html,
+    body {
       height: 100%;
       font-family: Tahoma, Verdana, sans-serif;
       overflow: hidden;
@@ -21,6 +22,7 @@
 
     body {
       background: url("bliss.png") center center / cover no-repeat fixed;
+      color: #111;
     }
 
     a {
@@ -58,8 +60,8 @@
       margin: 0 auto 6px;
       border-radius: 7px;
       background: linear-gradient(135deg, #fff, #8fc8ff 45%, #0756c9);
-      border: 1px solid rgba(255,255,255,0.8);
-      box-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.35);
     }
 
     .browser-window {
@@ -69,7 +71,7 @@
       border: 3px solid #0055e5;
       border-radius: 9px 9px 0 0;
       background: #ece9d8;
-      box-shadow: 8px 8px 22px rgba(0,0,0,0.45);
+      box-shadow: 8px 8px 22px rgba(0, 0, 0, 0.45);
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -104,6 +106,7 @@
       border-radius: 50%;
       background: radial-gradient(circle, #9ee7ff, #0077d9 70%);
       border: 1px solid white;
+      flex-shrink: 0;
     }
 
     .window-buttons {
@@ -121,7 +124,7 @@
       font-weight: 700;
       line-height: 20px;
       text-align: center;
-      box-shadow: inset -1px -1px 0 rgba(0,0,0,0.35);
+      box-shadow: inset -1px -1px 0 rgba(0, 0, 0, 0.35);
     }
 
     .window-button.close {
@@ -205,6 +208,7 @@
       border: 1px solid #0b690b;
       padding: 3px 10px;
       font-weight: 700;
+      cursor: pointer;
     }
 
     .browser-content {
@@ -243,6 +247,11 @@
     nav a {
       margin: 0 18px;
       font-size: 1rem;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
     }
 
     .content-window {
@@ -250,7 +259,7 @@
       margin-bottom: 18px;
       border-radius: 4px;
       overflow: hidden;
-      box-shadow: 1px 1px 3px rgba(0,0,0,0.12);
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
     }
 
     .content-titlebar {
@@ -278,7 +287,7 @@
       border: 1px solid #777;
       border-top-color: white;
       border-left-color: white;
-      box-shadow: 1px 1px 0 rgba(0,0,0,0.25);
+      box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
       border-radius: 2px;
       font-weight: 700;
     }
@@ -309,7 +318,7 @@
       display: flex;
       align-items: center;
       color: white;
-      box-shadow: 0 -2px 8px rgba(0,0,0,0.35);
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.35);
     }
 
     .start-button {
@@ -338,7 +347,7 @@
       border-radius: 3px;
       background: linear-gradient(to bottom, #1e73df, #0b4eb5);
       border: 1px solid #003f9e;
-      box-shadow: inset 1px 1px rgba(255,255,255,0.35);
+      box-shadow: inset 1px 1px rgba(255, 255, 255, 0.35);
       font-size: 14px;
     }
 
@@ -352,6 +361,7 @@
       align-items: center;
       justify-content: center;
       font-size: 13px;
+      font-weight: 500;
     }
 
     @media (max-width: 760px) {
@@ -397,21 +407,24 @@
         <div class="icon"></div>
         My Computer
       </div>
+
       <div class="desktop-icon">
         <div class="icon"></div>
         My Documents
       </div>
+
       <div class="desktop-icon">
         <div class="icon"></div>
         Internet Explorer
       </div>
+
       <div class="desktop-icon">
         <div class="icon"></div>
         Recycle Bin
       </div>
     </aside>
 
-    <div class="browser-window" role="application" aria-label="Internet Explorer style resume website window">
+    <div class="browser-window" role="application">
 
       <div class="browser-titlebar">
         <div class="browser-title">
@@ -426,7 +439,7 @@
         </div>
       </div>
 
-      <div class="menu-bar" aria-hidden="true">
+      <div class="menu-bar">
         <span>File</span>
         <span>Edit</span>
         <span>View</span>
@@ -435,7 +448,7 @@
         <span>Help</span>
       </div>
 
-      <div class="toolbar" aria-hidden="true">
+      <div class="toolbar">
         <div class="toolbar-button"><span class="round-icon"></span> Back</div>
         <div class="toolbar-button"><span class="round-icon gray"></span> Forward</div>
         <div class="toolbar-button">Stop</div>
@@ -445,7 +458,7 @@
         <div class="toolbar-button">Favorites</div>
       </div>
 
-      <div class="address-bar" aria-hidden="true">
+      <div class="address-bar">
         <span>Address</span>
         <div class="address-input">http://localhost/ethan-veillon-resume.html</div>
         <button class="go-button">Go</button>
@@ -458,17 +471,24 @@
           <p>Cyber Security Student | Java Enthusiast | Lifelong Learner</p>
         </header>
 
-        <nav aria-label="Primary navigation">
-          <a href="#about">🏠 About</a>
-          <a href="#resume">📄 Resume</a>
-          <a href="#contact">✉️ Contact</a>
+        <nav>
+          <a href="#about">About</a>
+          <a href="#resume">Resume</a>
+          <a href="#contact">Contact</a>
         </nav>
 
         <main>
           <section id="about" class="content-window">
             <div class="content-titlebar">About Me</div>
             <div class="content-body">
-              <p>I am a motivated cybersecurity major with growing expertise in Python, Java, and networking. I am passionate about AI technology and cybersecurity, I have been utilizing AI tools to consult individuals on future planning strategies. In addition, I create content on both Twitch and YouTube, where I develop skills in video editing, content creation, and community management. I am currently pursuing CompTIA A+, Network+, and Security+ certifications to further my knowledge in IT and cybersecurity fundamentals. </p>
+              <p>
+                I am a motivated cybersecurity major with growing expertise in Python, Java, and networking.
+                I am passionate about AI technology and cybersecurity, and I have been utilizing AI tools to consult
+                individuals on future planning strategies. In addition, I create content on both Twitch and YouTube,
+                where I develop skills in video editing, content creation, and community management. I am currently
+                pursuing CompTIA A+, Network+, and Security+ certifications to further my knowledge in IT and
+                cybersecurity fundamentals.
+              </p>
             </div>
           </section>
 
@@ -477,7 +497,9 @@
             <div class="content-body">
               <p>
                 You can download my resume
-                <a class="xp-button" href="https://drive.google.com/file/d/1mTWiV4HodLr2VOHBCV7_aUAvCBCBaMe3/view?usp=sharing" download>here</a>.
+                <a class="xp-button" href="https://drive.google.com/file/d/1mTWiV4HodLr2VOHBCV7_aUAvCBCBaMe3/view?usp=sharing" download>
+                  here
+                </a>.
               </p>
             </div>
           </section>
@@ -485,7 +507,10 @@
           <section id="contact" class="content-window">
             <div class="content-titlebar">Contact</div>
             <div class="content-body">
-              <p>Email me at <a href="mailto:eveillon14@gmail.com">eveillon14@gmail.com</a></p>
+              <p>
+                Email me at
+                <a href="mailto:eveillon14@gmail.com">eveillon14@gmail.com</a>
+              </p>
             </div>
           </section>
         </main>
@@ -498,7 +523,7 @@
     </div>
   </div>
 
-  <div class="taskbar" aria-hidden="true">
+  <div class="taskbar">
     <div class="start-button">
       <span>⊞</span>
       start
@@ -510,8 +535,26 @@
     </div>
 
     <div class="system-tray">
-      4:39 PM
+      <span id="clock">--:--</span>
     </div>
   </div>
+
+  <script>
+    function updateClock() {
+      const clock = document.getElementById("clock");
+      const now = new Date();
+
+      const time = now.toLocaleTimeString([], {
+        hour: "numeric",
+        minute: "2-digit"
+      });
+
+      clock.textContent = time;
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+
 </body>
 </html>
